@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+	
+	<!-- Base Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>org.openmrs.module.atomfeed</package>
+	<author>Soldevelo developers</author>
+	<description>
+			${project.parent.description}
+	</description>
+
+	<activator>org.openmrs.module.atomfeed.AtomfeedActivator</activator>
+
+	<require_version>2.0.5 - 2.0.*, 1.11.3, 1.9.10 - 1.9.*</require_version>
+
+	<require_modules>
+		<require_module version="${uiframeworkVersion}">org.openmrs.module.uiframework</require_module>
+	</require_modules>
+
+	<aware_of_modules>
+		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
+		<aware_of_module version="${uicommonsVersion}">org.openmrs.module.uicommons</aware_of_module>
+	</aware_of_modules>
+
+	<conditionalResources>
+		<conditionalResource>
+			<path>/lib/jackson-mapper-asl*</path>
+			<modules>
+				<module>
+					<moduleId>uiframework</moduleId>
+					<version>!</version>
+				</module>
+			</modules>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/jackson-core-asl*</path>
+			<modules>
+				<module>
+					<moduleId>uiframework</moduleId>
+					<version>!</version>
+				</module>
+			</modules>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/atomfeed-api-1.9-${project.parent.version}.jar</path>
+			<openmrsVersion>1.9.* - 2.0.0</openmrsVersion>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/atomfeed-api-2.0-${project.parent.version}.jar</path>
+			<openmrsVersion>2.0.0 - 2.*</openmrsVersion>
+		</conditionalResource>
+	</conditionalResources>
+
+	<!-- Extensions -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>org.openmrs.module.atomfeed.extension.html.AdminList</class>
+	</extension>
+
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+	<privilege>
+		<name>Load Atomfeed config</name>
+		<description>Ability to load Atomfeed configuration from file.</description>
+	</privilege>
+
+	<!--Global Properties for Feed Filters-->
+	<globalProperty>
+		<property>${project.parent.artifactId}.filter.location</property>
+		<defaultValue>*%*%*%*%*</defaultValue>
+		<description>Value of this property is used to filter objects pulled from parent.</description>
+	</globalProperty>
+
+</module>
+

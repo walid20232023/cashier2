@@ -1,0 +1,10 @@
+[
+    {
+        "id" : "commonlabtest.title",
+        "extensionPointId" : "patientDashboard.secondColumnFragments",
+        "type" : "link",
+        "label" : "commonlabtest.order.edit ",
+        "url" : "/commonlabtest/labTestSelection.form?patientId={{patient.uuid}}",
+        "icon" : "add.png"
+    }
+]

@@ -1,0 +1,19 @@
+{
+  "version": "1.2.5-SNAPSHOT",
+  "name": "Order Entry",
+  "description": "Used for placing, revising, and discontinuing orders, as well as looking up a patient's active orders.",
+  "launch_path": "index.html",
+  "icons": {
+    "48": "/img/omrs-button.png"
+  },
+  "developer": {
+    "name": "geofreyasiimwe,larrystone,flacode,zeze111,fuchodeveloper,Betty-Kebenei",
+    "url": "https://github.com/openmrs/openmrs-owa-orderentry"
+  },
+  "default_locale": "en",
+    "activities": {
+      "openmrs": {
+        "href": "*"
+      }
+    }
+}

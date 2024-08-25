@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for Order entry page when orderentryowa.encounterType is set should render component 1`] = `
+<div
+  className="order-entry-page"
+>
+  <div>
+    <withRouter(Connect(PatientHeader))
+      location={
+        Object {
+          "search": "?patient=esere_shbfidfb_343ffd",
+        }
+      }
+      patient={
+        Object {
+          "patient": Object {
+            "patientIdentifier": Object {
+              "identifier": "",
+            },
+            "person": Object {
+              "personName": Object {
+                "familyName": "",
+                "givenName": "",
+              },
+              "preferredAddress": Object {},
+            },
+          },
+        }
+      }
+    />
+    <div
+      className="header-nav"
+    >
+      <div>
+        <h3
+          className="orders-nav"
+          onClick={[Function]}
+          role="button"
+        >
+          <b>
+            <FormattedMessage
+              defaultMessage="Orders List"
+              description="Orders List"
+              id="app.orders.list"
+              values={Object {}}
+            />
+          </b>
+        </h3>
+      </div>
+      <Connect(SelectOrderType)
+        currentOrderType={
+          Object {
+            "id": "94386782390",
+          }
+        }
+        switchOrderType={[Function]}
+      />
+    </div>
+    <div
+      className="body-wrapper drug-order-entry"
+    >
+      <div>
+        <div
+          className="row"
+        >
+          <div
+            className="col-12 col-md-8"
+          >
+            <Connect(SearchAndAddOrder)
+              backLink={null}
+              inpatientCareSetting={
+                Object {
+                  "uuid": "6766667",
+                }
+              }
+              location={
+                Object {
+                  "search": "?patient=esere_shbfidfb_343ffd",
+                }
+              }
+              outpatientCareSetting={
+                Object {
+                  "uuid": "5677666",
+                }
+              }
+            />
+          </div>
+          <div
+            className="col-12 col-sm-6 col-md-4 draft-wrapper"
+          >
+            <Connect(InjectIntl(Draft))
+              draftOrders={
+                Array [
+                  Object {
+                    "drugName": "paracetamol",
+                  },
+                  Object {
+                    "display": "Hemoglobin",
+                    "uuid": "12746hfgjff",
+                  },
+                  Object {
+                    "display": "Hematocrit",
+                    "uuid": "12746hfgjff",
+                  },
+                  Object {
+                    "display": "blood",
+                    "uuid": "12746hfgjff",
+                  },
+                ]
+              }
+              editDraftDrugOrder={[MockFunction]}
+              handleSubmit={[Function]}
+              showAddResultsButton={null}
+              toggleDraftLabOrderUrgency={[MockFunction]}
+            />
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "marginTop": "20px",
+            }
+          }
+        >
+          <button
+            className="cancel"
+            disabled={true}
+            onClick={[Function]}
+          >
+            <FormattedMessage
+              defaultMessage="Return"
+              description="Return"
+              id="app.orders.return"
+              values={Object {}}
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

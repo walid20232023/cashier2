@@ -1,0 +1,45 @@
+[
+    {
+        "id": "dispensing.app",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "dispensing.app.label",
+        "url": "module/mycashier/accueilPharmacie.form",
+        "icon": "icon-medicine",
+        "order": 12,
+        "requiredPrivilege": "App: dispensing.app.dispense"
+    },
+    {
+        "id": "dispensing.dashboardAction",
+        "extensionPointId": "patientDashboard.visitActions",
+        "type": "link",
+        "label": "dispensing.app.label",
+        "url": "mycashier/mycashier.page",
+        "icon": "icon-medicine",
+        "order": 37,
+        "requiredPrivilege": "Task: mirebalais.dispensing"
+    },
+
+    {
+        "id": "dispensing.appe",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "dispensing.app.cashier",
+        "url": "module/mycashier/mycashier.form",
+        "icon": "fas fa-coins",
+        "order": 13,
+        "requiredPrivilege": "App: dispensing.app.dispense"
+    },
+    {
+        "id": "dispensing.dashboardActione",
+        "extensionPointId": "patientDashboard.visitActions",
+        "type": "link",
+        "label": "dispensing.app.cashier",
+        "url": "mycashier/mycashier.page",
+        "icon": "fas fa-coins",
+        "order": 38,
+        "requiredPrivilege": "Task: mirebalais.dispensing"
+    }
+]
+
+

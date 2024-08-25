@@ -1,0 +1,18 @@
+@import '~@openmrs/style-referenceapplication/src/sass/fragments/grid';
+
+.grid-row {
+    @include row();
+}
+
+@for $i from 1 through 12 {
+    .column-#{$i} {
+        @include column($i);
+    }
+}
+
+@for $i from 1 through 12 {
+    .pull-right-#{$i} {
+        @include push($i);
+    }
+}
+

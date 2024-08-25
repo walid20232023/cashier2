@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<author>djazayeri</author>
+	<description>
+		${project.parent.description}
+	</description>
+	<updateURL>https://dev.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<require_version>${openMRSVersion}</require_version>
+	<!-- / Module Properties -->
+
+    <require_modules>
+        <require_module version="${uiframeworkVersion}">
+            org.openmrs.module.uiframework
+        </require_module>
+        <require_module version="${appuiVersion}">
+            org.openmrs.module.appui
+        </require_module>
+        <require_module version="${webservices.restVersion}">
+            org.openmrs.module.webservices.rest
+        </require_module>
+    </require_modules>
+
+    <!-- Module Activator -->
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.OrderEntryUiActivator</activator>
+	
+	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+				
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with ${project.parent.artifactId}. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+	<!-- Global Properties Required by the Order Entry OWA -->
+	<globalProperty>
+		<property>orderentryowa.encounterType</property>
+		<description>Order Entry Encounter Type</description>
+		<defaultValue>Order Entry</defaultValue>
+	</globalProperty>
+	<globalProperty>
+		<property>orderentryowa.encounterRole</property>
+		<description>Order Entry Encounter Role</description>
+		<defaultValue>Clinician</defaultValue>
+	</globalProperty>
+	<globalProperty>
+		<property>orderentryowa.dateAndTimeFormat</property>
+		<description>Order Entry Date Format</description>
+		<defaultValue>DD-MMM-YYYY HH:mm</defaultValue>
+	</globalProperty>
+	<globalProperty>
+		<property>orderentryowa.labOrderAutoExpireTimeInDays</property>
+		<description>Lab Order Auto Expiry Time</description>
+		<defaultValue>30</defaultValue>
+	</globalProperty>
+	<globalProperty>
+		<property>orderentryowa.labOrderablesConceptSet</property>
+		<description>Laboratory Orderables</description>
+		<defaultValue>da006137-88ca-4d11-ae58-8b4b439afdd6</defaultValue>
+	</globalProperty>	
+</module>
+

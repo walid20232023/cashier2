@@ -1,0 +1,16 @@
+node_modules
+bower_components
+dist
+config.json
+*.zip
+coverage
+.nyc_output
+.DS_Store
+.idea
+*.swp
+*.swo
+tags
+tags.lock
+tags.temp
+*.log
+*.iml

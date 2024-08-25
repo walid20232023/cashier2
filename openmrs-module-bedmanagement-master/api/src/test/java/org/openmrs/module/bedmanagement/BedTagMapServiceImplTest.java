@@ -1,0 +1,112 @@
+package org.openmrs.module.bedmanagement;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.openmrs.User;
+import org.openmrs.api.APIException;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.bedmanagement.dao.BedTagMapDao;
+import org.openmrs.module.bedmanagement.entity.Bed;
+import org.openmrs.module.bedmanagement.entity.BedTag;
+import org.openmrs.module.bedmanagement.entity.BedTagMap;
+import org.openmrs.module.bedmanagement.service.impl.BedTagMapServiceImpl;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
+
+@PowerMockIgnore("javax.management.*")
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ Context.class })
+public class BedTagMapServiceImplTest {
+	
+	BedTagMapServiceImpl bedTagMapService;
+	
+	@Mock
+	BedTagMapDao bedTagMapDao;
+	
+	@Mock
+	Context context;
+	
+	@Mock
+	private User authenticatedUser;
+	
+	@Rule
+	public final ExpectedException exception = ExpectedException.none();
+	
+	@Before
+	public void setup() {
+		initMocks(this);
+		PowerMockito.mockStatic(Context.class);
+		when(Context.getAuthenticatedUser()).thenReturn(authenticatedUser);
+		bedTagMapService = new BedTagMapServiceImpl();
+		bedTagMapService.setDao(bedTagMapDao);
+	}
+	
+	@Test
+	public void shouldGetBedTagMapByUuid() {
+		String bedTagMapUuid = "bedTagMapUuid";
+		BedTagMap bedTagMap = new BedTagMap();
+		when(bedTagMapDao.getBedTagMapByUuid(bedTagMapUuid)).thenReturn(bedTagMap);
+		
+		BedTagMap actualBedTagMap = bedTagMapService.getBedTagMapByUuid(bedTagMapUuid);
+		
+		verify(bedTagMapDao, times(1)).getBedTagMapByUuid(bedTagMapUuid);
+		assertEquals(bedTagMap, actualBedTagMap);
+	}
+	
+	@Test
+	public void shouldGetBedTagByUuid() {
+		String bedTagUuid = "bedTagUuid";
+		BedTag bedTag = new BedTag();
+		when(bedTagMapDao.getBedTagByUuid(bedTagUuid)).thenReturn(bedTag);
+		
+		BedTag actualBedTag = bedTagMapService.getBedTagByUuid(bedTagUuid);
+		
+		verify(bedTagMapDao, times(1)).getBedTagByUuid(bedTagUuid);
+		assertEquals(bedTag, actualBedTag);
+	}
+	
+	@Test
+	public void shouldThrowExceptionIfGivenBedAlreadyAssignedGivenBedTag() throws Exception {
+		exception.expect(APIException.class);
+		exception.expectMessage("Tag Already Present For Bed");
+		
+		Bed bed = new Bed();
+		BedTag bedTag = new BedTag();
+		BedTagMap bedTagMap = new BedTagMap();
+		bedTagMap.setBed(bed);
+		bedTagMap.setBedTag(bedTag);
+		when(bedTagMapDao.getBedTagMapWithBedAndTag(bed, bedTag)).thenReturn(bedTagMap);
+		bedTagMapService.save(bedTagMap);
+	}
+	
+	@Test
+	public void shouldAssignGivenBedWithGivenBedTag() throws Exception {
+		Bed bed = new Bed();
+		BedTag bedTag = new BedTag();
+		BedTagMap bedTagMap = new BedTagMap();
+		bedTagMap.setBed(bed);
+		bedTagMap.setBedTag(bedTag);
+		when(bedTagMapDao.getBedTagMapWithBedAndTag(bed, bedTag)).thenReturn(null);
+		bedTagMapService.save(bedTagMap);
+		verify(bedTagMapDao, times(1)).saveOrUpdate(any(BedTagMap.class));
+	}
+	
+	@Test
+	public void shouldVoidGivenBedTagMap() throws Exception {
+		String reason = "some reason";
+		BedTagMap bedTagMap = new BedTagMap();
+		bedTagMapService.delete(bedTagMap, reason);
+		verify(bedTagMapDao, times(1)).saveOrUpdate(any(BedTagMap.class));
+	}
+}
