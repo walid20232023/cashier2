@@ -1,0 +1,7 @@
+org/openmrs/module/mycashier/fragment/controller/UsersFragmentController.class
+org/openmrs/module/mycashier/extension/html/AdminList.class
+org/openmrs/module/mycashier/web/controller/TestController.class
+org/openmrs/module/mycashier/web/controller/MycashierController.class
+org/openmrs/module/mycashier/web/controller/ManageController.class
+org/openmrs/module/mycashier/web/controller/SearchController.class
+org/openmrs/module/mycashier/web/controller/VenteDrugController.class
